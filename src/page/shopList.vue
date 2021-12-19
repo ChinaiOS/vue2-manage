@@ -47,7 +47,7 @@
                   label="店铺介绍"
                   prop="description">
                 </el-table-column>
-                <el-table-column label="操作" width="200">
+                <el-table-column label="操作" width="250">
                   <template slot-scope="scope">
                     <el-button
                       size="mini"
@@ -69,11 +69,12 @@
                   @current-change="handleCurrentChange"
                   :current-page="currentPage"
                   :page-size="20"
+                  background
                   layout="total, prev, pager, next"
                   :total="count">
                 </el-pagination>
             </div>
-            <el-dialog title="修改店铺信息" v-model="dialogFormVisible">
+            <el-dialog title="修改店铺信息" :visible.sync="dialogFormVisible" >
                 <el-form :model="selectTable">
                     <el-form-item label="店铺名称" label-width="100px">
                         <el-input v-model="selectTable.name" auto-complete="off"></el-input>
@@ -219,12 +220,15 @@
                 this.getResturants()
             },
             handleEdit(index, row) {
+                console.log(index);
+                console.log(row);
                 this.selectTable = row;
                 this.address.address = row.address;
                 this.dialogFormVisible = true;
                 this.selectedCategory = row.category.split('/');
                 if (!this.categoryOptions.length) {
-                    this.getCategory();
+                    console.log(1);
+                    // this.c();
                 }
             },
             addFood(index, row){

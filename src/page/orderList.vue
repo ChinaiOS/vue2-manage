@@ -48,6 +48,7 @@
                   @current-change="handleCurrentChange"
                   :current-page="currentPage"
                   :page-size="20"
+                  background
                   layout="total, prev, pager, next"
                   :total="count">
                 </el-pagination>

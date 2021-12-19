@@ -71,11 +71,12 @@
                   @current-change="handleCurrentChange"
                   :current-page="currentPage"
                   :page-size="20"
+                  background
                   layout="total, prev, pager, next"
                   :total="count">
                 </el-pagination>
             </div>
-            <el-dialog title="修改食品信息" v-model="dialogFormVisible">
+            <el-dialog title="修改食品信息" :visible.sync="dialogFormVisible">
                 <el-form :model="selectTable">
                     <el-form-item label="食品名称" label-width="100px">
                         <el-input v-model="selectTable.name" auto-complete="off"></el-input>
@@ -140,7 +141,7 @@
             </el-dialog>
 
 
-            <el-dialog title="添加规格" v-model="specsFormVisible">
+            <el-dialog title="添加规格" :visible="specsFormVisible">
 			  	<el-form :rules="specsFormrules" :model="specsForm">
 				    <el-form-item label="规格" label-width="100px" prop="specs">
 				     	<el-input v-model="specsForm.specs" auto-complete="off"></el-input>
@@ -300,12 +301,16 @@
                 }
             },
             handleEdit(row) {
+                console.log(123456)
             	this.getSelectItemData(row, 'edit')
                 this.dialogFormVisible = true;
             },
             async getSelectItemData(row, type){
+                console.log(row.restaurant_id);
             	const restaurant = await getResturantDetail(row.restaurant_id);
-            	const category = await getMenuById(row.category_id)
+                console.log(restaurant);
+            	const category = await getMenuById(row.category_id);
+                console.log(category);
                 this.selectTable = {...row, ...{restaurant_name: restaurant.name, restaurant_address: restaurant.address, category_name: category.name}};
 
                 this.selectMenu = {label: category.name, value: row.category_id}

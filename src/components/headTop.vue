@@ -1,7 +1,8 @@
 <template>
     <div class="header_container">
 
-		<el-breadcrumb separator="/">
+		<!-- <el-breadcrumb separator="/"> -->
+        <el-breadcrumb separator-class="el-icon-arrow-right">
 			<el-breadcrumb-item :to="{ path: '/manage' }">首页</el-breadcrumb-item>
 			<el-breadcrumb-item v-for="(item, index) in $route.meta" :key="index">{{item}}</el-breadcrumb-item>
 		</el-breadcrumb>
