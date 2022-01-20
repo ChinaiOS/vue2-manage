@@ -1,8 +1,7 @@
 <template>
 	<div class="manage_page fillcontain">
 		<el-row style="height: 100%;">
-	  		<!-- <el-col :span="4"  style="min-height: 100%; background-color: #324057;"> -->
-            <el-col :span="4"  style="min-height: 100%; background-color: #303133;">
+            <el-col :span="4"  style="min-height: 100%; min-width:201px; background-color: #303133;">
 				<el-menu :default-active="defaultActive" style="min-height: 100%;" background-color="#303133" text-color="#fff" router>
 					<el-menu-item index="manage">
                         <i class="el-icon-menu"></i>
