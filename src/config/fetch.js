@@ -16,7 +16,8 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
 		}
 	}
 
-	if (window.fetch && method == 'fetch') {
+    if (window.fetch && method == 'fetch') {
+        console.log('window.fetch');
 		let requestConfig = {
 			credentials: 'include',
 			method: type,
@@ -25,7 +26,8 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
 				'Content-Type': 'application/json'
 			},
 			mode: "cors",
-			cache: "force-cache"
+			// cache: "force-cache"
+            cache: "no-cache"
 		}
 
 		if (type == 'POST') {
@@ -33,7 +35,7 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
 				value: JSON.stringify(data)
 			})
 		}
-		
+
 		try {
 			const response = await fetch(url, requestConfig);
 			const responseJson = await response.json();
@@ -41,7 +43,8 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
 		} catch (error) {
 			throw new Error(error)
 		}
-	} else {
+    } else {
+        console.log('not window.fetch');
 		return new Promise((resolve, reject) => {
 			let requestObj;
 			if (window.XMLHttpRequest) {
