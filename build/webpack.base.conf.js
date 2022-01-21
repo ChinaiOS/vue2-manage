@@ -4,6 +4,7 @@ var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -44,24 +45,26 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        loader: 'file-loader',
+        loader: 'url-loader',
         options: {
-        //   limit: 10000,
-          name: utils.assetsPath('img/[name].[hash:7].[ext]')
+          limit: 10000,
+          name: utils.assetsPath('img/[name].[hash:8].[ext]')
         }
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'file-loader',
+        loader: 'url-loader',
         options: {
-        //   limit: 10000,
-          name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
+          limit: 10000,
+        //   name: utils.assetsPath('fonts/[name].[hash:8].[ext]')
+            name: '[name].[hash:8].[ext]'
         }
       }
     ]
   },
   plugins: [
     new ESLintPlugin(),
-    new VueLoaderPlugin()
+      new VueLoaderPlugin(),
+      new CleanWebpackPlugin(),
   ]
 }
