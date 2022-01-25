@@ -12,7 +12,7 @@ function resolve (dir) {
 
 module.exports = {
   entry: {
-    app: './src/main.js'
+    app: './src/index.js'
   },
   output: {
     path: config.build.assetsRoot,
@@ -56,8 +56,8 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-        //   name: utils.assetsPath('fonts/[name].[hash:8].[ext]')
-            name: '[name].[hash:8].[ext]'
+          name: utils.assetsPath('fonts/[name].[hash:8].[ext]')
+            // name: '[name].[hash:8].[ext]'
         }
       }
     ]
@@ -66,5 +66,7 @@ module.exports = {
     new ESLintPlugin(),
       new VueLoaderPlugin(),
       new CleanWebpackPlugin(),
-  ]
+  ],
+  devtool: 'source-map'
+
 }
